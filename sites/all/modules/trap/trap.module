@@ -1,0 +1,64 @@
+<?php
+
+	//hook_init()
+	function trap_init(){
+		//drupal_set_message("TEST Page = Trap");
+		}
+		
+	//hook_menu()
+	function trap_menu(){
+		$items=array();
+		
+		$items['trap']=array(
+			'title'=>'Trap',
+			'description'=>'Listen to Some Trap',
+			'page callback'=>'runthetrap', //what function code executes when a user opens the form
+			'access callback'=>'user_access',
+			'access arguments'=>array('access content'),
+			'type'=>MENU_NORMAL_ITEM
+			
+		);
+		
+		return $items;
+	}
+	
+	function runthetrap(){
+
+		// Create connection
+		$con=mysqli_connect("localhost","evolut23_user","awesomepassword");
+
+		// Check connection
+		if (mysqli_connect_errno($con))
+		{
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		} else { echo "Connection was OK!\n";}		
+
+
+		//mysqli_select_db($con, "evolut23_sounddata");
+		
+
+		
+	
+	//$query = mysqli_query("SELECT name, artist, url FROM 'dr_tracks' WHERE rank = 0");
+		//print_r($query->__toString());
+	
+	$query = mysqli_real_query($con, "SELECT name, artist, url FROM 'dr_tracks' WHERE rank = 0");
+	$result = mysqli_use_result($con);
+	printf("%s\n", $result[0]);
+	
+	//$result = $query->execute();
+	
+//	foreach ($result as $record) {
+	// Do something with each $record
+//	print_r($record->__toString());
+//	}
+
+
+mysqli_close($con);
+		
+			
+		drupal_set_message("All Traps Up");
+			
+	}
+	
+?>

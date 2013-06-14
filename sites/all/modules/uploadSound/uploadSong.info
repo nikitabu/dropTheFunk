@@ -1,0 +1,3 @@
+name = uploadSong
+core = 7.x
+description =  "add a song to the database"

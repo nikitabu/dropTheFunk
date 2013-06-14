@@ -1,0 +1,122 @@
+<?php
+
+	//hook_init()
+	function uploadSong_init(){
+		//drupal_set_message("Hello World");
+		}
+		
+	//hook_menu()
+	function uploadSong_menu(){
+		$items=array();
+		
+		$items['UploadSong']=array(
+			'title'=>'Upload Song Page',
+			'description'=>'Upload a Song Here',
+			'page callback'=>'drupal_get_form', //what function code executes when a user opens the form
+			'page arguments'=>array('uploadSong_showUploadSongForm'),
+			'access callback'=>'user_access',
+			'access arguments'=>array('access content'),
+			'type'=>MENU_NORMAL_ITEM
+			
+		);
+		
+		return $items;
+	}
+	
+	function uploadSong_showUploadSongForm(){
+		
+		$form=array();
+		
+		$form['name']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter song name'
+		);
+		
+		$form['artist']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter song artist'
+		);
+		
+		$form['genre']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter song genre'
+		);
+		
+		$form['url']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter soundcloud url'
+		);
+		
+		$form['submit']=array(
+			'#type'=>'submit',
+			'#value'=>'Submit'
+		);
+		
+		$form['#submit'][]='uploadSong_showUploadSongForm_submit';
+		
+		return $form;
+	
+	}
+	
+	function uploadSong_showUploadSongForm_submit($form, &$form_state){
+	
+		if($form_state['values']['name'] == '' OR $form_state['values']['artist'] == '' OR $form_state['values']['genre'] == '' OR $form_state['values']['url'] == ''){
+			form_set_error('name', 'Fields can not be empty');
+		} else {
+		
+		//mysql_connect('localhost', 'evolut23_user', 'awesomepassword');
+		//mysql_select_db('evolut23_sounddata');
+
+	// Create connection
+	$con=mysqli_connect("localhost","evolut23_user","awesomepassword");
+
+	// Check connection
+	if (mysqli_connect_errno($con))
+  	{
+  	echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  	} else { echo "Connection was OK!\n";}		
+
+
+	//mysqli_select_db($con, "evolut23_sounddata");
+
+/*
+	db_insert('tracks')
+	->fields(array(
+	'name' => $form_state['values']['name'],
+	'artist' => $form_state['values']['artist'],
+	'genre' => $form_state['values']['genre'],
+	'url' => $form_state['values']['url'],
+	'upvotes' => 0,
+	'downvotes' => 0,
+	'rank' => 0,
+	'dateadded' => 101010,
+	))
+	->execute();
+*/
+
+	db_insert('tracks')
+	->fields(array(
+	'name' => 'awesomesong',
+	'artist' => 'zedd',
+	'genre' => 'banger',
+	'url' => 'soundcloud.com/zedd/dovregubben',
+	'upvotes' => 0,
+	'downvotes' => 0,
+	'rank' => 0,
+	'dateadded' => 101010,
+	))
+	->execute();
+
+		
+		//db_query("INSERT INTO 'tracks' ('name', 'artist', 'genre', 'url') VALUES ('%s', '%s', '%s', '%s',)", form_state['values']['name'], form_state['values']['artist'], form_state['values']['genre'], form_state['values']['url']);
+
+		//db_query("INSERT INTO `evolut23_sounddata`.`tracks` (`name`, `artist`, `genre`, `url`, `upvotes`, `downvotes`, `rank`, `dateadded`) VALUES ('Zedd', 'Alive', 'Electro House', 'https://soundcloud.com/zedd/alive', '0', '0', '0', CURRENT_DATE());");
+		
+//db_query("INSERT INTO `evolut23_sounddata`.`tracks` (`name`, `artist`, `genre`, `url`, `upvotes`, `downvotes`, `rank`, `dateadded`) VALUES (form_state['values']['name'], form_state['values']['artist'], form_state['values']['genre'], form_state['values']['alive'], '0', '0', '0', CURRENT_DATE());");
+
+		
+		drupal_set_message("Thanks Brother ".$form_state['values']['name']." ".$form_state['values']['artist']." ".$form_state['values']['genre']." ".$form_state['values']['url']);
+		}
+	}
+	
+?>

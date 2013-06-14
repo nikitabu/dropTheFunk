@@ -1,0 +1,70 @@
+<?php
+
+	//hook_init()
+	function uploadSong_init(){
+		//drupal_set_message("Hello World");
+		}
+		
+	//hook_menu()
+	function uploadSong_menu(){
+		$items=array();
+		
+		$items['UploadSong']=array(
+			'title'=>'Upload Song Page',
+			'description'=>'Upload a Song Here',
+			'page callback'=>'drupal_get_form', //what function code executes when a user opens the form
+			'page arguments'=>array('uploadSong_showUploadSongForm'),
+			'access callback'=>'user_access',
+			'access arguments'=>array('access content'),
+			'type'=>MENU_NORMAL_ITEM
+			
+		);
+		
+		return $items;
+	}
+	
+	function uploadSong_showUploadSongForm(){
+		
+		$form=array();
+		
+		$form['name']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter song name'
+		);
+		
+		$form['artist']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter song artist'
+		);
+		
+		$form['genre']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter song genre'
+		);
+		
+		$form['url']=array(
+			'#type'=>'textfield',
+			'#title'=>'Enter soundcloud url'
+		);
+		
+		$form['submit']=array(
+			'#type'=>'submit',
+			'#value'=>'Submit'
+		);
+		
+		$form['#submit'][]='uploadSong_showUploadSongForm_submit';
+		
+		return $form;
+	
+	}
+	
+	function uploadSong_showUploadSongForm_submit($form, &$form_state){
+	
+		if($form_state['values']['name'] == '' OR $form_state['values']['artist'] == '' OR $form_state['values']['genre'] == '' OR $form_state['values']['url'] == ''){
+			form_set_error('name', 'Fields can not be empty');
+		} else {
+		drupal_set_message("Thanks Brother ".$form_state['values']['name']." ".$form_state['values']['artist']." ".$form_state['values']['genre']." ".$form_state['values']['url']);
+		}
+	}
+	
+?>
