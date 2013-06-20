@@ -53,21 +53,36 @@ table {
 }
 
 th, td {
-    border: 1px solid #666;
+    border: 1px solid orange;
     padding: 5px;
 }
 
 th {
-    background-color: silver;
+    background-color: rgba(255,177,0,0.6);
+}
+
+.views-field-counter {
+    width: 10%;
+    vertical-align: middle;
+    text-align: center;
+}
+.views-field-title {
+    width: 50%;
+}
+.views-field-field-fivestar-rating {
+    vertical-align: bottom;
 }
 
 /* GENERAL STYLING
 -----------------------------------*/
 body {
 	/*background-color: #111;*/
-	font: 14px/140% Arial, Helvetica, sans-serif;
+	font: 1em Helvetica, Arial, sans-serif;
 	color: black;
-	padding: 40px;
+}
+
+#main {
+	padding-bottom: 40px;
 }
 
 p {
@@ -218,7 +233,7 @@ ul.pager {
 /* STRUCTURE
 -----------------------------------*/
 #page {
-	width: 67%;
+	width: 75%;
 	margin: 0 auto;
 }
 
@@ -258,7 +273,8 @@ ul.pager {
 }
 
 #content-header {
-	position: relative
+	position: relative;
+	display: none;
 }
 
 #content-header .tabs {

@@ -6,6 +6,15 @@
  */
 Drupal.behaviors.pjax = {
   attach: function(context) {
+	
+	console.log("Drupal Behaviors Attached");
+
+	jQuery('a.stratus').click(function() {
+			source = "http://stratus.sc/player?auto_play=false&links=https%3A%2F%2Fsoundcloud.com%2Fdillonfrancis%2Fcalvin-harris-dillon-francis&download=false&color=red&theme=http%3A%2F%2Fwww.evolutionsocial.com%2Fsupertopsecret%2FstratusThemeDark.css&link=http%3A%2F%2Fevolutionsocial.com%2Fsupertopsecret%2F"
+			jQuery.postMessage(jQuery(this).attr('href'), source, jQuery('#stratus iframe')[0].contentWindow);
+			console.log("stratus attached to links");
+			return false;
+		});
 
     // The defaults attribute is only available in browsers that support pjax.
     if (!$.pjax.defaults) {
@@ -27,11 +36,25 @@ Drupal.behaviors.pjax = {
         // pjax() uses live(), so links that are removed and re-added will still work.
         if (Drupal.settings.pjax.linksSelector) {
           $pjaxLinks = $(Drupal.settings.pjax.linksSelector);
-          $pjaxLinks.pjax(Drupal.settings.pjax.contentSelector)
+          //$pjaxLinks.pjax(null, Drupal.settings.pjax.contentSelector)
+
+	  console.log("links selector set");
+	  console.log(Drupal.settings.pjax.linksSelector);
+	  console.log(Drupal.settings.pjax.contentSelector);
+
+	  $(document).pjax(Drupal.settings.pjax.linksSelector, Drupal.settings.pjax.contentSelector);
             // Add 'loading' class.
-            .live('click', function(e) {
-              $(this).addClass("pjax-link-loading");
-            });
+
+	  console.log( $(document).pjax(Drupal.settings.pjax.linksSelector, Drupal.settings.pjax.contentSelector) );
+
+          //$(document).live('click', function(e) {
+          //  $(this).addClass("pjax-link-loading");
+          // });
+
+	  $(document).on('click', Drupal.settings.pjax.linksSelector, function(event) {
+	     console.log("Clicked on Selector");
+	     $(this).addClass("pjax-link-loading");
+	  })
         }
 
         // Catch pjax start/end events.
@@ -42,6 +65,8 @@ Drupal.behaviors.pjax = {
 
             // Add 'loading' class.
             $content.addClass("pjax-loading");
+
+	    console.log("pjax loading");
 
             // Remove 'active' class from links.
             if ($pjaxLinks) {
@@ -54,6 +79,8 @@ Drupal.behaviors.pjax = {
 
             // Remove 'loading' class.
             $content.removeClass("pjax-loading");
+
+	    console.log("pjax loaded");
 
             // Update classes on the clicked link.
             if ($pjaxLinks) {

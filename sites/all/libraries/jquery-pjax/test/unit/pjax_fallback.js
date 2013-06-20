@@ -103,6 +103,10 @@ asyncTest("adds entry to browser history"+s, function() {
   var frame = this.frame
   var count = 0
 
+  frame.onpopstate = function() {
+    window.iframeLoad(frame)
+  }
+
   this.loaded = function() {
     count++
 
@@ -149,7 +153,7 @@ asyncTest("scrolls to anchor at top page"+s, function() {
     setTimeout(function() {
       equal(frame.window.scrollY, 8)
       start()
-    }, 10)
+    }, 100)
   }
 
   frame.$.pjax({

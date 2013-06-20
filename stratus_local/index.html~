@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Custom SoundCoud Player</title>
+	
+	<script type="text/javascript" src="jquery183.js"></script>
+	<script type="text/javascript" src="stratus.js"></script>
+	
+</head>
+
+<body>
+
+	<div id='content'>
+	
+		<a href="http://soundcloud.com/foofighters/rope" class="sc_player">Foo Fighters - Rope</a> 
+
+		<br><br><a href="https://soundcloud.com/dillonfrancis/calvin-harris-dillon-francis" class="sc_player">Calvin Harris & Dillon Francis - Here 2 China</a> 
+
+		<br><br><a href="https://soundcloud.com/excision/excision-space-laces-destroid" class="sc_player">Excision & Space Laces - Funk Hole</a> 
+
+		<br><br><a href="https://soundcloud.com/flux-pavilion/flux-pavilion-diplo-friends" class="sc_player">Flux Pavilion - Diplo & Friends 2013 - BBC Radio One/1Xtra</a> 
+
+		<br><br><a href="https://soundcloud.com/munchi_productions/munchi-press-pause" class="sc_player">Munchi - Press Pause</a>
+
+		<script type="text/javascript">
+			$('a.sc_player').click(function() { 
+				  $.addToTracks( $(this).attr('href') );
+				  return false;
+				});
+		</script>
+
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			jQuery.stratus({
+				auto_play: false,
+				links: 'https://soundcloud.com/dillonfrancis/calvin-harris-dillon-francis',
+				download: true,
+				color: 'red',
+				popup: false,
+				theme: 'player/stratusThemeDark.css'
+			});
+		});
+	</script>
+
+</body>
+
+</html>

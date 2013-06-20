@@ -24,6 +24,24 @@ function md_minimal_preprocess_page(&$vars, $hook) {
 	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/js/md_minimal.js');
 	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/js/stratus.js');
 
+	// stratus javascript
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/jquery.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/jquery.url.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/jquery.postmessage.min.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/jquery.popupwindow.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/underscore.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/backbone.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/ICanHaz.min.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/color.js');
+	drupal_add_js( drupal_get_path('theme', 'md_minimal') .'/stratus/player.js');	
+	drupal_add_js( 'http://connect.soundcloud.com/sdk.js');
+
+	// stratus styling
+	drupal_add_css( drupal_get_path('theme', 'md_minimal') .'/stratus/player.css');
+	drupal_add_css( drupal_get_path('theme', 'md_minimal') .'/stratus/default.css');
+	drupal_add_css( drupal_get_path('theme', 'md_minimal') .'/stratus/stratus.css');
+
+
 //	drupal_add_html_head('<script type="text/javascript"> jQuery(document).ready(function(){ jQuery().stratus({ links: "http://soundcloud.com/////foofighters/sets/wasting-light"}); }); </script>');
 
 
