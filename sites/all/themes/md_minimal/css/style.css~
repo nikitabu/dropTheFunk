@@ -81,6 +81,10 @@ body {
 	color: black;
 }
 
+#main {
+	padding-bottom: 40px;
+}
+
 p {
 	margin: 0 0 1.2em;
 	padding: 0;
@@ -235,9 +239,15 @@ ul.pager {
 
 /* HEADER
 -----------------------------------*/
+
+#fblogin {
+	float: right;
+	margin-top: 10px;
+}
+
 #logo {
-	padding: 30px 0 10px;
-	text-align: center
+	text-align: center;
+	clear: both;
 }
 
 #navigation {
