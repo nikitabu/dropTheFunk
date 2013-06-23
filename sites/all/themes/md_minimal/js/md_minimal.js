@@ -21,13 +21,3 @@ jQuery(function() {
 	
 });
 
-Drupal.behaviors.addStratus = {
-	attach: function(context, settings) {
-		jQuery('a.stratus').click(function() {
-			source = "http://stratus.sc/player?auto_play=false&links=https%3A%2F%2Fsoundcloud.com%2Fdillonfrancis%2Fcalvin-harris-dillon-francis&download=false&color=red&theme=http%3A%2F%2Fwww.evolutionsocial.com%2Fsupertopsecret%2FstratusThemeDark.css&link=http%3A%2F%2Fevolutionsocial.com%2Fsupertopsecret%2F"
-			jQuery.postMessage(jQuery(this).attr('href'), source, jQuery('#stratus iframe')[0].contentWindow);
-			console.log("stratus attached to links");
-			return false;
-		});
-	}
-};

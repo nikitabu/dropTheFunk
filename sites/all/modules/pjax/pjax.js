@@ -10,8 +10,11 @@ Drupal.behaviors.pjax = {
 	console.log("Drupal Behaviors Attached");
 
 	jQuery('a.stratus').click(function() {
+
+	                //jQuery.addToTracks( jQuery(this).attr('href') );
+
 			source = "http://stratus.sc/player?auto_play=false&links=https%3A%2F%2Fsoundcloud.com%2Fdillonfrancis%2Fcalvin-harris-dillon-francis&download=false&color=red&theme=http%3A%2F%2Fwww.evolutionsocial.com%2Fsupertopsecret%2FstratusThemeDark.css&link=http%3A%2F%2Fevolutionsocial.com%2Fsupertopsecret%2F"
-			jQuery.postMessage(jQuery(this).attr('href'), source, jQuery('#stratus iframe')[0].contentWindow);
+			$.postMessage($(this).attr('href'), source, $('#stratus iframe')[0].contentWindow);
 			console.log("stratus attached to links");
 			return false;
 		});
@@ -39,8 +42,6 @@ Drupal.behaviors.pjax = {
           //$pjaxLinks.pjax(null, Drupal.settings.pjax.contentSelector)
 
 	  console.log("links selector set");
-	  console.log(Drupal.settings.pjax.linksSelector);
-	  console.log(Drupal.settings.pjax.contentSelector);
 
 	  $(document).pjax(Drupal.settings.pjax.linksSelector, Drupal.settings.pjax.contentSelector);
             // Add 'loading' class.
