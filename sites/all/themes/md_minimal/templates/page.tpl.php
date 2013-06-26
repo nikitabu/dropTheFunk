@@ -5,7 +5,20 @@
   <div id="header">
 
     <div id="fblogin">
-	<?php print fboauth_action_display('connect'); ?>
+	<?php // print fboauth_action_display('connect'); ?>
+
+	<?php
+	global $user;
+
+	if ( $user->uid ) {
+	  // Logged in user
+	  print "<a href='?q=user/logout'>Log Out</a>";
+	}
+	else {
+	  // Not logged in
+	  print fboauth_action_display('connect');
+	}
+	?>
     </div>
 
     <div id="logo">
